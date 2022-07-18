@@ -21,6 +21,10 @@ class Company extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function Account() {
+        return $this->hasMany(Account::class);
+    }
+
     protected static function booted()
     {
         static::creating(function ($company) {

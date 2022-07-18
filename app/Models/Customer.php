@@ -16,4 +16,11 @@ class Customer extends Model
     public function address() {
         return $this->morphOne('App\Models\Address', 'addressable');
     }
+
+    protected static function booted()
+    {
+        static::creating(function ($customer) {
+            $customer->user_id = auth()->user()->id;
+        });
+    }
 }

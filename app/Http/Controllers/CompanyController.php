@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Company;
 use App\Models\Address;
+use App\Models\Account;
 
 use App\Http\Resources\Companies\CompanyResource;
 
@@ -46,6 +47,13 @@ class CompanyController extends Controller
 
             $company->address()->save($address);
 
+            $account = new Account;
+            $account->number = $request->account['number'];
+            $account->beneficiary = $request->account['beneficiary'];
+            $account->bic_code = $request->account['bic_code'];
+
+            $company->account()->save($account);
+
             DB::commit();
 
             return response()->json([
@@ -62,7 +70,6 @@ class CompanyController extends Controller
     }
 
     public function update(Company $company, UpdateCompanyRequest $request) {
-
         try {
             DB::beginTransaction();
 
@@ -98,7 +105,6 @@ class CompanyController extends Controller
                 'error_message' => $e->getMessage(),
             ], 500);
         }
-
     }
 
     public function show(Company $company) {

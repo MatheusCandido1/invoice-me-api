@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\AccountController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,5 +32,21 @@ Route::group(['prefix' => 'v1'], function () {
         Route::get('/{company}', [CompanyController::class, 'show']);
         Route::put('/{company}', [CompanyController::class, 'update']);
         Route::delete('/{company}', [CompanyController::class, 'destroy']);
+    });
+
+    Route::group(['prefix' => 'customers'], function () {
+        Route::get('', [CustomerController::class, 'index']);
+        Route::post('', [CustomerController::class, 'store']);
+        Route::get('/{customer}', [CustomerController::class, 'show']);
+        Route::put('/{customer}', [CustomerController::class, 'update']);
+        Route::delete('/{customer}', [CustomerController::class, 'destroy']);
+    });
+
+    Route::group(['prefix' => 'accounts'], function () {
+        Route::post('', [AccountController::class, 'store']);
+        Route::get('', [AccountController::class, 'index']);
+        Route::get('/{account}', [AccountController::class, 'show']);
+        Route::put('/{account}', [AccountController::class, 'update']);
+        Route::delete('/{account}', [AccountController::class, 'destroy']);
     });
 });
