@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\CompanyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,5 +23,12 @@ Route::group(['prefix' => 'v1'], function () {
         Route::post('sign-in', [AuthController::class, 'signIn']);
         Route::post('sign-up', [AuthController::class, 'signUp']);
         Route::post('sign-out', [AuthController::class, 'signOut']);
+    });
+
+    Route::group(['prefix' => 'companies'], function () {
+        Route::post('', [CompanyController::class, 'store']);
+        Route::get('/{company}', [CompanyController::class, 'show']);
+        Route::put('/{company}', [CompanyController::class, 'update']);
+        Route::delete('/{company}', [CompanyController::class, 'destroy']);
     });
 });

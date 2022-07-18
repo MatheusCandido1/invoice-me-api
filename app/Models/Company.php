@@ -16,4 +16,15 @@ class Company extends Model
     public function address() {
         return $this->morphOne('App\Models\Address', 'addressable');
     }
+
+    public function User() {
+        return $this->belongsTo(User::class);
+    }
+
+    protected static function booted()
+    {
+        static::creating(function ($company) {
+            $company->user_id = auth()->user()->id;
+        });
+    }
 }
