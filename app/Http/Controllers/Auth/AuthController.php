@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Models\User;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\SignUpRequest;
-use App\Http\Requests\SignInRequest;
+use App\Http\Requests\Auth\SignUpRequest;
+use App\Http\Requests\Auth\SignInRequest;
 
 class AuthController extends Controller
 {
