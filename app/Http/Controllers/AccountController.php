@@ -35,7 +35,8 @@ class AccountController extends Controller
             DB::commit();
 
             return response()->json([
-                'message' => 'Account created'
+                'message' => 'Account created',
+                'data' => new AccountResource($account)
             ], 201);
 
         } catch (\Exception $e) {
@@ -85,7 +86,8 @@ class AccountController extends Controller
             DB::commit();
 
             return response()->json([
-                'message' => 'Account updated'
+                'message' => 'Account updated',
+                'data' => new AccountResource($account)
             ], 200);
 
         } catch (\Exception $e) {
@@ -102,7 +104,8 @@ class AccountController extends Controller
             $account->delete();
 
             return response()->json([
-                'message' => 'Account deleted'
+                'message' => 'Account deleted',
+                'data' => new AccountResource($account)
             ], 200);
 
         } catch (\Exception $e) {
